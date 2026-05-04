@@ -1,0 +1,454 @@
+:root {
+    --page-bg: #3f4b68;
+    --panel-bg: #252d44;
+    --display-bg: #181f32;
+
+    --button-bg: #eae3dc;
+    --button-text: #3b4355;
+    --button-shadow: #b4a597;
+
+    --text-muted: #b7b7ca;
+
+    --accent-bg: #647299;
+    --accent-shadow: #414e73;
+
+    --danger-bg: #d13f30;
+    --danger-shadow: #93261a;
+
+    --radius: 8px;
+
+    --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+* {
+    box-sizing: border-box;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    margin:0;
+    gap: 16px;
+    padding-bottom: 2%;
+}
+
+body {
+    background: var(--page-bg);
+    font-family: var(--font-main);
+    padding: 0;
+    margin:0;
+}
+
+section {
+    background: var(--panel-bg);
+    border-radius: 16px;
+    padding: 20px;
+    margin:0;
+}
+
+div {
+    padding: 0;
+}
+
+
+button {
+    background: var(--button-bg);
+    color: var(--button-text);
+    border: none;
+    border-radius: var(--radius);
+    padding: 14px 18px;
+    font-weight: 700;
+    box-shadow: 0 4px 0 var(--button-shadow);
+    cursor: pointer;
+    transition: transform 0.05s ease, box-shadow 0.05s ease;    
+}
+
+#undoLast,
+#timerReset,
+#editPlayerButton,#howToUseButton {
+    background: var(--accent-bg);
+    color: white;
+    box-shadow: 0 4px 0 var(--accent-shadow);
+}
+
+button:active {
+    transform: translateY(4px);
+    box-shadow: 0 0 0 var(--button-shadow);
+}
+
+#undoLast:active,
+#timerReset:active,
+#editPlayerButton:active {
+    transform: translateY(4px);
+    box-shadow: 0 0 0 var(--accent-shadow);
+}
+
+.hidden {
+    display: none !important;
+}
+
+/*Timer styling*/
+
+#timerSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    width: 40%;
+    /*transform: scale(0.9);*/
+
+}
+#timerDisplay,#timerEditInput {
+    display: flex;
+    justify-content: center;
+    align-items: center ;
+    text-align: center;
+    background-color: var(--display-bg);
+    color: white;
+    font-size: 48px;
+    padding: 0px;
+    margin: 0;
+    border-radius: var(--radius);
+    box-shadow: inset 0 4px 0 #111820;
+    border : none;
+    width: 200px;
+    height: 80px;
+    }
+
+#timerControlsDiv {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    padding:0;
+    margin:0;
+}
+
+#timerDisplay.timerOn {
+    color: #04ff0c;
+    box-shadow: 
+        inset 0 4px 0 #111820,
+        0 0 10px rgba(4, 255, 12, 0.6);
+}
+
+.isEditing {
+    border: 2px solid #ffff00;
+}
+
+#secondRowSection {
+    display: flex;
+    gap: 20px;
+    background : transparent;
+    margin:0;
+    padding: 0px;
+    padding-left:10px;
+    padding-right:10px;
+    width: 100%;
+}
+
+#playersSection, #detailsSection {
+    flex: 1;
+}
+
+/*Player Section*/
+
+#playersSection {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+#playersHeaderAndDisplay {
+    display: flex;
+    flex-direction: row;
+    width : 100%;
+}
+
+#playersHeader {
+    flex: 2;
+    margin: 0;
+    padding: 0;
+    align-self: flex-start;
+    width: 100%;
+}
+
+#playerTitle, #detailsTitle {
+    margin: 0;
+    padding: 4px 10px;
+    padding-top: 0px;
+    font-size: 32px;
+    display:inline-block;
+    color: var(--text-muted);
+    border: 2px solid var(--text-muted);
+    border-radius: var(--radius);
+}   
+
+#playersDisplay{
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin: 0;
+    padding:0;
+    width : 100%;       
+}
+
+#passerDisplay, #receiverDisplay,#feedbackDisplay {
+    width: 100%;
+    margin: 4px 10px;
+    padding: 8px;
+    font-size: 24px;
+    background-color: var(--display-bg);
+    color: white;
+    border-radius: var(--radius);
+    box-shadow: inset 0 4px 0 #111820;
+}
+
+/*Player buttons layout*/
+#playerButtons {
+    display : grid;
+    grid-template-columns: repeat(4,1fr);
+        gap: 10px;
+        margin-top: 10px;
+}
+
+.playerTile {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.playerTile button,#editPlayerTile button {
+    width: 100%;
+    height: 100%;
+    font-size: 18px;
+
+}
+
+.selectedPasser {
+    background: #64b5f6;
+    box-shadow: 0 4px 0 #2f75aa;
+}
+
+.selectedReceiver {
+    background: #ff6b6b;
+    box-shadow: 0 4px 0 #b83a3a;
+}
+
+/*Editing mode styles*/
+.playerNumberInput,
+.playerNameInput,
+.playerPosInput {
+    width: 100%;
+    padding: 2px;
+    border-radius: var(--radius);
+    border: none;
+    text-align: center;
+}
+
+.editTile{
+    display:flex;
+    flex-direction: column;
+    gap: 2px;
+    background-color: var(--accent-bg);
+    border-radius:var(--radius);
+    padding: 2px;
+}
+
+#editPlayerTile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+#cancelEditPlayerButton {
+    background: var(--danger-bg);
+    color: white;
+    box-shadow: 0 4px 0 var(--danger-shadow);
+    padding:0;
+}
+#saveEditPlayerButton {
+    background: var(--accent-bg);
+    color: white;
+    box-shadow: 0 4px 0 var(--accent-shadow);
+    padding: 0;
+}
+
+
+/*Detail Section*/
+#detailsSection {
+    display: flex;
+    flex-direction: column;
+}
+
+#detailsHeader {
+    margin: 0;
+    padding: 0;
+    align-self: flex-start;
+}
+
+#completedDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+#detailsButtons {
+    display : grid;
+    grid-template-columns: repeat(5,1fr);
+        gap: 10px;
+        margin-top: 10px;
+}
+
+#detailsButtons button {
+    width: 100%;
+    height: 100%;
+}
+
+.longBall{
+    background-color: #b0b0b0;
+    box-shadow: 0 4px 0 #7a7a7a;
+}
+
+.selectedComment {
+    background-color: #fff700;
+    box-shadow: 0 4px 0 #b2a000;
+}
+.selectedLongBall {
+    background-color: #ff00ff;
+    box-shadow: 0 4px 0 #b200b2;
+    color: rgb(0, 0, 0);
+}
+.completedPass{
+    background-color: #32ff39;
+    box-shadow: 0 4px 0 #1a7a1a;
+}
+.incompletePass {
+    background-color: var(--danger-bg);
+    box-shadow: 0 4px 0 var(--danger-shadow);
+    color: white;
+}
+
+
+/*log section*/
+#logSection{
+    width:60%;
+}
+#logControls {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+#log {
+    background: var(--danger-bg);
+    color: white;
+    box-shadow: 0 4px 0 var(--danger-shadow);
+}
+
+#log:active {
+    transform: translateY(4px);
+    box-shadow: 0 0 0 var(--button-shadow);
+}
+
+#logDisplay {
+    border: 2px solid rgba(255,255,255,0.2);
+    border-radius: 12px;
+    overflow: hidden; 
+}
+
+table {
+    width: 100%;
+    border-spacing: 0;
+    background: var(--panel-bg);
+    overflow: hidden;
+}
+
+th {
+    background: var(--display-bg);
+    color: white;
+    font-weight: 600;
+    padding: 10px;
+    font-size: 14px;    
+    border-bottom: 2px solid rgba(255,255,255,0.08);
+    border-right: 2px solid rgba(255,255,255,0.08); 
+}
+
+td {
+    padding: 10px;
+    text-align: center;
+    color: var(--text-main);
+
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    border-right : 2px solid rgba(255,255,255,0.05);
+    color : var(--text-muted);
+}
+
+tbody tr:nth-child(even) td {
+    background: rgba(255,255,255,0.02);
+}
+#exportDiv {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+#googleSheetLink {
+    border: 2px solid var(--accent-bg);
+    border-radius: 12px;
+    padding: 10px 20px;
+}
+
+#feedbackDisplay{
+    margin-top: 12px;
+    margin-bottom: 0;
+    text-align:center;
+}
+
+#bottomControls {
+    gap: 0;
+    margin: 0;
+}
+/*How to Use Card*/
+#quickTipsRow{
+    display:flex;
+    justify-content: space-between;
+}
+
+#howToUseCard {
+    width: 100%;
+    max-width: 900px;
+    color: var(--text-muted);
+}
+
+#howToUseCard h2 {
+    margin: 0 0 10px 0;
+    font-size: 24px;
+    color: white;
+}
+
+#howToUseCard ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+#howToUseCard li {
+    margin-bottom: 8px;
+}
+
+#lastPoint{
+    display:flex;
+    justify-content:flex-end;
+}

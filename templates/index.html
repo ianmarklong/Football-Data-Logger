@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Football Data Logger</title>
+    <link rel="stylesheet" href="/static/styles.css">
+
+</head>
+
+<body>
+<main>
+    <section id = 'timerSection'> 
+        <div id = 'timerDisplayDiv'>
+            <h1 id = 'timerDisplay'>00:00</h1>
+            <input id = 'timerEditInput' type = 'text' value = '' class="hidden" maxlength="5" inputmode="numeric"> <!-- numeric is only for mobile but this app is built for desktop-->
+        </div>
+        <div id = 'timerControlsDiv'>
+            <button id = 'minus5'>-5</button>
+            <button id = 'minus3'>-3</button>
+            <button id="playPause">
+                <svg id="playIcon" viewBox="0 0 24 24" width="20" height="20">
+                    <polygon points="6,4 20,12 6,20" fill="currentColor"/>
+                </svg>
+
+                <svg id="pauseIcon" class="hidden" viewBox="0 0 24 24" width="20" height="20">
+                    <rect x="6" y="4" width="4" height="16" fill="currentColor"/>
+                    <rect x="14" y="4" width="4" height="16" fill="currentColor"/>
+                </svg>
+            </button>
+            <button id = 'plus3'>+3</button>
+            <button id = 'plus5'>+5</button>
+        </div>
+        <div id = 'timerResetDiv'>
+            <button id = 'timerReset'>Reset</button>
+        </div>
+    </section>
+
+    <section id = 'secondRowSection'>
+    <section id = 'playersSection'>
+        <span id = 'playersHeaderAndDisplay'>
+        <div id = 'playersHeader'>
+            <h2 id = 'playerTitle'>Players</h2>
+        </div>
+        <div id = 'playersDisplay'>
+            <h2 id = 'passerDisplay'>Passer: None</h2>
+            <h2 id = 'receiverDisplay'>Receiver: None</h2>
+        </div>
+        </span>
+        <div id = 'playerButtons'>
+            <div class = 'playerTile' id = 'tile1'>
+                <button type="button" class = 'player' id = 'player1'>1</button>
+                <span class='editTile hidden'>
+                    <input type="number" min="1" max="99" class = 'playerNumberInput' id = 'player1Number' autocomplete="off">
+                    <input type="text" class = 'playerNameInput' id = 'player1Name' autocomplete="off">
+                    <input type="text" class = 'playerPosInput' id = 'player1Pos' autocomplete="off"  autocapitalize="characters">
+                </span>
+            </div>
+
+            <div class = 'playerTile' id = 'tile2'>
+                <button type="button" class = 'player' id = 'player2'>2</button>
+                <span class='editTile hidden'>
+                    <input type="number" min="1" max="99" class = 'playerNumberInput' id = 'player2Number' autocomplete="off">
+                    <input type="text" class = 'playerNameInput' id = 'player2Name' autocomplete="off">
+                    <input type="text" class = 'playerPosInput' id = 'player2Pos' autocomplete="off"  autocapitalize="characters">
+                </span>
+            </div>
+
+            <div class = 'playerTile' id = 'tile3'>
+                <button type="button" class = 'player' id = 'player3'>3</button>
+                <span class='editTile hidden'>
+                    <input type="number" min="1" max="99" class = 'playerNumberInput' id = 'player3Number' autocomplete="off">
+                    <input type="text" class = 'playerNameInput' id = 'player3Name' autocomplete="off">
+                    <input type="text" class = 'playerPosInput' id = 'player3Pos' autocomplete="off"  autocapitalize="characters">
+                </span>
+            </div>
+
+            <div class = 'playerTile' id = 'tile4'>
+                <button type="button" class = 'player' id = 'player4'>4</button>
+                <span class='editTile hidden'>
+                    <input type="number" min="1" max="99" class = 'playerNumberInput' id = 'player4Number' autocomplete="off">
+                    <input type="text" class = 'playerNameInput' id = 'player4Name' autocomplete="off">
+                    <input type="text" class = 'playerPosInput' id = 'player4Pos' autocomplete="off"  autocapitalize="characters">
+                </span>
+            </div>
+
+            <div class = 'playerTile' id = 'tile5'>
+                <button type="button" class = 'player' id = 'player5'>5</button>
+                <span class='editTile hidden'>
+                    <input type="number" min="1" max="99" class = 'playerNumberInput' id = 'player5Number' autocomplete="off">
+                    <input type="text" class = 'playerNameInput' id = 'player5Name' autocomplete="off">
+                    <input type="text" class = 'playerPosInput' id = 'player5Pos' autocomplete="off"  autocapitalize="characters">
+                </span>
+            </div>
+
+            <div class = 'playerTile' id = 'tile6'>
+                <button type="button" class = 'player' id = 'player6'>6</button>
+                <span class='editTile hidden'>
+                    <input type="number" min="1" max="99" class = 'playerNumberInput' id = 'player6Number' autocomplete="off">
+                    <input type="text" class = 'playerNameInput' id = 'player6Name' autocomplete="off">
+                    <input type="text" class = 'playerPosInput' id = 'player6Pos' autocomplete="off"  autocapitalize="characters">
+                </span>
+            </div>
+
+            <div class = 'playerTile' id = 'tile7'>
+                <button type="button" class = 'player' id = 'player7'>7</button>
+                <span class='editTile hidden'>
+                    <input type="number" min="1" max="99" class = 'playerNumberInput' id = 'player7Number' autocomplete="off">
+                    <input type="text" class = 'playerNameInput' id = 'player7Name' autocomplete="off">
+                    <input type="text" class = 'playerPosInput' id = 'player7Pos' autocomplete="off"  autocapitalize="characters">
+                </span>
+            </div>
+
+            <div class = 'playerTile' id = 'tile8'>
+                <button type="button" class = 'player' id = 'player8'>8</button>
+                <span class='editTile hidden'>
+                    <input type="number" min="1" max="99" class = 'playerNumberInput' id = 'player8Number' autocomplete="off">
+                    <input type="text" class = 'playerNameInput' id = 'player8Name' autocomplete="off">
+                    <input type="text" class = 'playerPosInput' id = 'player8Pos' autocomplete="off"  autocapitalize="characters">
+                </span>
+            </div>
+
+            <div class = 'playerTile' id = 'tile9'>
+                <button type="button" class = 'player' id = 'player9'>9</button>
+                <span class='editTile hidden'>
+                    <input type="number" min="1" max="99" class = 'playerNumberInput' id = 'player9Number' autocomplete="off">
+                    <input type="text" class = 'playerNameInput' id = 'player9Name' autocomplete="off">
+                    <input type="text" class = 'playerPosInput' id = 'player9Pos' autocomplete="off"  autocapitalize="characters">
+                </span>
+            </div>
+
+            <div class = 'playerTile' id = 'tile10'>
+                <button type="button" class = 'player' id = 'player10'>10</button>
+                <span class='editTile hidden'>
+                    <input type="number" min="1" max="99" class = 'playerNumberInput' id = 'player10Number' autocomplete="off">
+                    <input type="text" class = 'playerNameInput' id = 'player10Name' autocomplete="off">
+                    <input type="text" class = 'playerPosInput' id = 'player10Pos' autocomplete="off"  autocapitalize="characters">
+                </span>
+            </div>
+
+            <div class = 'playerTile' id = 'tile11'>
+                <button type="button" class = 'player' id = 'player11'>11</button>
+                <span class='editTile hidden'>
+                    <input type="number" min="1" max="99" class = 'playerNumberInput' id = 'player11Number' autocomplete="off">
+                    <input type="text" class = 'playerNameInput' id = 'player11Name' autocomplete="off">
+                    <input type="text" class = 'playerPosInput' id = 'player11Pos' autocomplete="off"  autocapitalize="characters">
+                </span>
+            </div>
+
+            <div id = 'editPlayerTile'>
+                <button type="button" id="editPlayerButton">Edit</button>
+                <button type="button" id="cancelEditPlayerButton" class="hidden">Cancel</button>
+                <button type="button" id="saveEditPlayerButton" class="hidden">Save</button>
+            </div>
+        </div>
+    </section>
+
+    <section id = 'detailsSection'>
+        <div id = 'detailsHeader'>
+            <h2 id = 'detailsTitle'>Details</h2>
+        </div>
+        <div id = 'completedDiv'>
+            <button type="button" class="detail completedPass" id="completed">Completed</button>
+        </div>
+        <div id = 'detailsButtons'>
+            <button type="button" class="detail comment" data-comment="Through ball" id="throughButton">Through</button>
+            <button type="button" class="detail comment" data-comment="Cross" id="crossButton">Cross</button>
+            <button type="button" class="detail longBall" data-longball="Long ball None" id="longBallButton">Long Ball</button>
+            <button type="button" class="detail longBall" data-longball="Long ball 2nd ball" id="secondBallButton">Long Ball 2nd Ball</button>
+            <button type="button" class="detail longBall" data-longball="Long ball 3rd ball" id="thirdBallButton">Long Ball 3rd Ball</button>
+            <button type="button" class="detail comment" data-comment="Throw-in" id="throwInButton">Throw In</button>
+            <button type="button" class="detail comment" data-comment="Corner" id="cornerButton">Corner</button>
+            <button type="button" class="detail comment" data-comment="Free kick" id="freeKickButton">Free Kick</button>
+            <button type="button" class="detail comment" data-comment="Kickoff" id="kickoffButton">Kickoff</button>
+            <button type="button" class="detail comment" data-comment="Offside" id="offsideButton">Offside</button>
+            <button type="button" class="detail comment" data-comment="GK throw" id="GKThrowButton">GK Throw</button>
+            <button type="button" class="detail comment" data-comment="GK dropkick" id="GKDropkickButton">GK Dropkick</button>
+            <button type="button" class="detail comment" data-comment="Goal kick" id="goalKickButton">Goal Kick</button>
+        </div>
+    </section>
+    </section>
+    <section id = 'logSection'>
+        <div id = 'logControls'>
+            <button id = 'undoLast'>Undo Last</button>
+            <button id = 'log'>Log</button>
+            <button id = 'clearLog'>Clear Log</button>
+        </div>
+
+        <div id = 'logDisplay'>
+            <table id = 'eventsTable'>
+                <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>Passer</th>
+                        <th>Receiver</th>
+                        <th>Completed</th>
+                        <th>Comments</th>
+                        <th>Long Ball</th>
+                    </tr>
+                </thead>
+                <tbody id = 'eventsTableBody'>
+                    
+                </tbody>
+            </table>
+        </div>
+
+        <div id = 'exportDiv'>
+            <input type="text" id="googleSheetLink" placeholder="Google Sheet Link" autocomplete="off">
+            <button id = 'export'>Export</button>
+        </div>
+        
+        <div id="feedBackDiv">
+            <h2 id = 'feedbackDisplay'>Latest Update: None</h2>
+        </div>
+
+    </section>
+    <section id = 'bottomControls'>
+        <button id = 'resetAll'>Reset All Data</button>
+        <button id = 'howToUseButton'>How To Use</button>
+    </section>
+
+    <section id="howToUseCard" class = 'hidden'>
+    <h2 id ='quickTipsRow'>Quick Tips<button id = 'hideButton'>Hide</button></h2>
+    <ul>
+        <li>Press <strong>Spacebar</strong> to start or stop the timer.</li>
+        <li>Click the timer to manually edit the time.</li>
+        <li>After logging, the receiver automatically becomes the next passer.</li>
+        <li>You must select both a passer and receiver before logging.</li>
+        <li>Set your Google Sheet sharing to <strong>Anyone with the link can edit</strong>.</li>
+        <li>Data will be added to the worksheet named <strong>Passes</strong>.</li>
+        <li >Check <strong>Latest Update</strong> if something does not work.</li>
+        <li id='lastPoint'>- Ian Long, Iqboy '24</li>
+    </ul>
+</section>
+        
+
+    <script src="/static/app.js"></script>
+</main>
+</body>
+</html>
