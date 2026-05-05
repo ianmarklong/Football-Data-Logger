@@ -3,6 +3,8 @@ from gspread_formatting import * #for formatting google sheets
 from google.oauth2.service_account import Credentials #for authentication with Google Sheets API
 from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS #to allow cross-origin requests from frontend
+import os
+import json
 
 app = Flask(__name__)
 CORS(app) #to solve CORS issues when frontend and backend are on different ports during development
@@ -22,8 +24,12 @@ def find_player_by_number(players, number):
 def get_sheet(sheet_url):
     scopes = ["https://www.googleapis.com/auth/spreadsheets"] 
 
-    creds = Credentials.from_service_account_file(
-        "credentials.json", scopes=scopes
+    creds_json = os.environ.get("GOOGLE_CREDENTIALS_JSON")
+
+    creds_dict = json.loads(creds_json)
+
+    creds = Credentials.from_service_account_info(
+        creds_dict, scopes=scopes
     )
 
     client = gspread.authorize(creds) #creates client to interact with Google Sheets API using the provided credentials and scopes
