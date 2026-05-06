@@ -13,13 +13,6 @@ CORS(app) #to solve CORS issues when frontend and backend are on different ports
 def home():
     return render_template("index.html")
 
-#Helper functions
-
-def find_player_by_number(players, number):
-    for player in players.values():
-        if player['number'] == number:
-            return player
-    return None
 
 def get_sheet(sheet_url):
     scopes = ["https://www.googleapis.com/auth/spreadsheets"] 
@@ -81,15 +74,11 @@ def get_sheet(sheet_url):
 def export():
     data = request.json
     events = data.get('events', [])
-    players = data.get('players', {})
     sheet_url = data.get('sheetUrl')
 
     if not events:
         print('No events to export')
-        return jsonify({"error": "No events to export"}), 400
-    if not players:
-        print('No player mapping provided')
-        return jsonify({"error": "Player mapping is required"}), 400   
+        return jsonify({"error": "No events to export"}), 400   
     if not sheet_url:
         print('No Google Sheet URL provided')
         return jsonify({"error": "Google Sheet URL is required"}), 400
@@ -98,25 +87,15 @@ def export():
 
     print('Received exports: ')
     print('events:', events)
-    print('players:',players)
     print('sheet_url:', sheet_url)
     print()
     rows = []
     
     for event in events:
-        passerObject = find_player_by_number(players, event['passer'])
-        if not passerObject:
-            print('Passer not found for event:', event)
-            continue  # Skip if player not found
-        passerName = passerObject['name']
-        passerPosition = passerObject['position']
-
-        receiverObject = find_player_by_number(players, event['receiver'])
-        if not receiverObject:
-            print('Receiver not found for event:', event)
-            continue  # Skip if player not found
-        receiverName = receiverObject['name']
-        receiverPosition = receiverObject['position']
+        passerName = event.get('passerName', '-')
+        passerPosition = event.get('passerPosition', '-')
+        receiverName = event.get('receiverName', '-')
+        receiverPosition = event.get('receiverPosition', '-')
 
         completed = 'Complete' if event['completed'] else 'Incomplete'
 

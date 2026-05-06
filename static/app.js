@@ -469,10 +469,19 @@ logButton.addEventListener('click', () => {
     }
     // Proceed with logging the event
     console.log('Logging event with Time:', formatTime(matchSeconds), 'Passer:', passer, 'Receiver:', receiver, 'Completed:', completed, 'Comment:', comment, 'Long Ball:', longBall);
+    const passerKey = passer.slice(6); // Extract player key from button ID (e.g., 'player3' -> '3')
+    const receiverKey = receiver.slice(6);
     const event = {
         time: formatTime(matchSeconds),
-        passer: players[passer.slice(6)].number,
-        receiver: players[receiver.slice(6)].number,
+
+        passer: players[passerKey].number,
+        passerName: players[passerKey].name,
+        passerPosition: players[passerKey].position,
+
+        receiver: players[receiverKey].number,
+        receiverName: players[receiverKey].name,
+        receiverPosition: players[receiverKey].position,
+
         completed: completed,
         comment: comment,
         longBall: longBall
@@ -545,6 +554,7 @@ undoLastButton.addEventListener('click',() => {
     displayFeedback('Latest Update: Event removed');
 });
 
+
 function addEventToTable(event) {
     const row = document.createElement('tr');
     row.innerHTML = `
@@ -597,7 +607,6 @@ exportButton.addEventListener('click', () => {
         },
         body: JSON.stringify({
             events: events,   // your logged events
-            players: players, // your player mapping
             sheetUrl: sheetUrl // the Google Sheet URL from the input field
         })
     })
