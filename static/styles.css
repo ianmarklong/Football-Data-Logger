@@ -100,6 +100,7 @@ button:active {
     align-items: center;
     gap: 8px;
     width: 40%;
+    min-width: 300px;
     /*transform: scale(0.9);*/
 
 }
@@ -342,7 +343,7 @@ button:active {
 
 /*log section*/
 #logSection{
-    width:60%;
+    width:90%;
 }
 #logControls {
     display: flex;
@@ -366,6 +367,7 @@ button:active {
     border: 2px solid rgba(255,255,255,0.2);
     border-radius: 12px;
     overflow: hidden; 
+    overflow-x: auto;
 }
 
 table {
@@ -373,6 +375,7 @@ table {
     border-spacing: 0;
     background: var(--panel-bg);
     overflow: hidden;
+    table-layout: fixed;
 }
 
 th {
@@ -451,4 +454,96 @@ tbody tr:nth-child(even) td {
 #lastPoint{
     display:flex;
     justify-content:flex-end;
+}
+
+@media (max-width: 1180px) {
+    th,
+    td {
+        padding: 6px;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 950px) and (orientation: landscape) {
+    main {
+        gap: 6px;
+        padding: 6px;
+    }
+
+    section {
+        padding: 8px;
+        border-radius: 10px;
+    }
+
+    #secondRowSection {
+        gap: 8px;
+    }
+
+    #timerSection {
+        transform: scale(0.75);
+        margin-bottom: -20px;
+    }
+
+    #playerTitle,
+    #detailsTitle {
+        font-size: 18px;
+        padding: 2px 6px;
+    }
+
+    #passerDisplay,
+    #receiverDisplay {
+        font-size: 14px;
+        padding: 4px;
+        margin: 2px 6px;
+    }
+
+    #playerButtons,
+    #detailsButtons {
+        gap: 5px;
+        margin-top: 5px;
+    }
+
+    button {
+        padding: 6px 8px;
+        min-height: 30px;
+        font-size: 12px;
+        box-shadow: 0 3px 0 var(--button-shadow);
+    }
+
+    .playerTile button,
+    #editPlayerTile button,
+    #detailsButtons button {
+        font-size: 12px;
+    }
+
+    #completedDiv {
+        margin-top: 5px;
+    }
+
+    #logControls {
+        gap: 6px;
+        margin-bottom: 6px;
+    }
+
+    #logDisplay {
+        max-height: 120px;
+        overflow-y: auto;
+        overflow-x: auto;
+    }
+
+    th,
+    td {
+        padding: 4px;
+        font-size: 10px;
+    }
+
+    #exportDiv {
+        margin-top: 8px;
+        gap: 6px;
+    }
+
+    #googleSheetLink {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
 }
