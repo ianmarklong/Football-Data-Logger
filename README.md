@@ -53,11 +53,13 @@ This also was to practise vanila JavaScript, specifically, DOM manipulation, sta
 ### Main Interface
 ![Main UI 1](static/screenshots/main-ui1.png)
 ![Main UI 2](static/screenshots/main-ui2.png)
+### With Events Logged
 ![Main UI 3](static/screenshots/main-ui3.png)
 
-### Player Edit Mode
+### Player Edit View
 ![Edit Mode](static/screenshots/edit-mode.png)
 
 ### Google Sheet Output
 ![Google Sheet](static/screenshots/google-sheet.png)
+Can do your own formatting on google sheets to make it more presentable.
 
