@@ -57,7 +57,7 @@ This also was to practise vanila JavaScript, specifically, DOM manipulation, sta
 ## Screenshots
 
 ### Main Interface
-
+![Main UI 1](static/screenshots/main-ui1.png)
 ![Main UI 2](static/screenshots/main-ui2.png)
 ### With Events Logged
 ![Main UI 3](static/screenshots/main-ui3.png)
