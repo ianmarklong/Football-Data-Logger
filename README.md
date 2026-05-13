@@ -61,6 +61,8 @@ This also was to practise vanila JavaScript, specifically, DOM manipulation, sta
 ![Main UI 2](static/screenshots/main-ui2.png)
 ### With Events Logged
 ![Main UI 3](static/screenshots/main-ui3.png)
+### When Log is Invalid
+![Main UI 4](static/screenshots/main-ui4.png)
 
 ### Player Edit View
 ![Edit Mode](static/screenshots/edit-mode.png)
