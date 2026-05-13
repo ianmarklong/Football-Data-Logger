@@ -6,7 +6,8 @@ A simple web app to help log football pass data while watching a match
 ## What it does
 
 - Logs passer, receiver, match time, completion status and additional details
-- Automatically sets the receiver as the next passer
+- Pop-up message when log fails
+- Allows buttons to show names or numbers
 - Allows player numbers, names, and positions to be edited
 - Stores events locally before export
 - Exports logged data to a Google Sheet worksheet named `Passes`
@@ -32,6 +33,9 @@ This also was to practise vanila JavaScript, specifically, DOM manipulation, sta
 - Handling substitutions by saving player snapshots per event instead of referring to a player information list
 - Connecting a frontend app to a Flask backend
 - Deploying a full-stack app with environment variables
+- Familiarity with modern CSS layout tools
+- Experience with virtual environments
+- Usage of git and github 
 
 
 ## How to Use
@@ -42,7 +46,9 @@ This also was to practise vanila JavaScript, specifically, DOM manipulation, sta
 4. Add pass details if needed
 5. Press Log
 6. After logging events, paste a Google Sheet link
-7. Export data to the `Passes` worksheet
+7. Ensure Google Sheet allows anyone to edit
+8. Export data to the `Passes` worksheet
+   
 
 ## Live Demo
 
