@@ -5,6 +5,7 @@ let intervalID = null;
 
 let editingTime = false;
 
+let playerDisplayNames = false;
 let passer = null;
 let receiver = null;
 let isEditingPlayers = false;
@@ -21,11 +22,11 @@ let players = {
                 3: {number: 3, name: 'Player 3', position: 'LB'},
                 4: {number: 4, name: 'Player 4', position: 'LCB'},
                 5: {number: 5, name: 'Player 5', position: 'RCB'},
-                6: {number: 6, name: 'Player 6', position: 'DM'},
+                6: {number: 6, name: 'Player 6', position: 'LCM'},
                 7: {number: 7, name: 'Player 7', position: 'LW'},
-                8: {number: 8, name: 'Player 8', position: 'CM'},
+                8: {number: 8, name: 'Player 8', position: 'RCM'},
                 9: {number: 9, name: 'Player 9', position: 'ST'},
-                10: {number: 10, name: 'Player 10', position: 'LCM/AM'},
+                10: {number: 10, name: 'Player 10', position: 'AM'},
                 11: {number: 11, name: 'Player 11', position: 'RW'}
             };          
 
@@ -42,6 +43,7 @@ const plus5Button = document.getElementById('plus5');
 const minus3Button = document.getElementById('minus3');
 const plus3Button = document.getElementById('plus3');
 
+const toggleDisplayButton = document.getElementById('toggleDisplayButton');
 const passerDisplay = document.getElementById('passerDisplay');
 const receiverDisplay = document.getElementById('receiverDisplay');
 const playerButtons = document.querySelectorAll('.player');
@@ -69,6 +71,9 @@ const resetAllButton = document.getElementById('resetAll');
 const howToUseButton = document.getElementById('howToUseButton')
 
 const hideButton = document.getElementById('hideButton')
+const popupOverlay = document.getElementById('popupOverlay');
+const popupNotification = document.getElementById('popupNotification');
+const howToUseCard = document.getElementById('howToUseCard');
 
 
 // Load players from localStorage if available//
@@ -232,6 +237,16 @@ document.addEventListener('keydown', (e) => {
 })
 
 //Player Section//
+toggleDisplayButton.addEventListener('click', () => {
+    playerDisplayNames = !playerDisplayNames;
+    if (playerDisplayNames) {
+        toggleDisplayButton.textContent = 'Show Numbers';
+    } 
+    else {
+        toggleDisplayButton.textContent = 'Show Names';
+    }
+    updatePlayerButtons();
+});
 function updatePlayerDisplay() {
     console.log('Updating player display: Passer:', passer, 'Receiver:', receiver);
     if (passer !== null) {
@@ -404,7 +419,13 @@ function toggleEditPlayerMode() {
 function updatePlayerButtons() {
     playerButtons.forEach((button, index) => {
         const playerKey = index + 1;
-        button.textContent = `${players[playerKey].number}`;
+
+        if (playerDisplayNames) {
+            button.textContent = `${players[playerKey].name}`;
+        }
+        else {
+            button.textContent = `${players[playerKey].number}`;
+        }
     });
 }
 
@@ -463,7 +484,7 @@ longballButtons.forEach((button) => {
 //Log Event Button//
 logButton.addEventListener('click', () => {
     if (passer === null || receiver === null) {
-        console.log('Please select both a passer and a receiver.');
+        showPopup();
         displayFeedback('Latest Update: Please select both passer and receiver');
         return;
     }
@@ -498,14 +519,8 @@ logButton.addEventListener('click', () => {
         displayFeedback('Latest Update: Could not save event data locally');
     }
 
-    // After logging event, reset selections except for making passer into previous receiver(unless pass unsuccessful)//
-    if(completed){
-        passer = receiver; 
-    }
-    else{
-        passer = null
-    }
-    
+    // After logging event, reset selections
+    passer = null    
     receiver = null;
     completed = true;
     comment = '-';
@@ -516,12 +531,6 @@ logButton.addEventListener('click', () => {
         btn.classList.remove('selectedPasser');
         btn.classList.remove('selectedReceiver');
     });
-
-    // Set previous receiver button to selected passer state for next event//
-    const newPasserButton = document.getElementById(passer); //no need for if statement since user cannot log without receiver selected, and passer is automatically set to previous receiver after logging//
-    if (newPasserButton) {
-        newPasserButton.classList.add('selectedPasser');
-    }   
 
     completedButton.textContent = 'Completed';
     completedButton.classList.remove('incompletePass');
@@ -653,11 +662,11 @@ resetAllButton.addEventListener('click', () => {
             3: {number: 3, name: 'Player 3', position: 'LB'},
             4: {number: 4, name: 'Player 4', position: 'LCB'},
             5: {number: 5, name: 'Player 5', position: 'RCB'},
-            6: {number: 6, name: 'Player 6', position: 'DM'},
+            6: {number: 6, name: 'Player 6', position: 'LCM'},
             7: {number: 7, name: 'Player 7', position: 'LW'},
-            8: {number: 8, name: 'Player 8', position: 'CM'},
+            8: {number: 8, name: 'Player 8', position: 'RCM'},
             9: {number: 9, name: 'Player 9', position: 'ST'},
-            10: {number: 10, name: 'Player 10', position: 'LCM/AM'},
+            10: {number: 10, name: 'Player 10', position: 'AM'},
             11: {number: 11, name: 'Player 11', position: 'RW'}
         };
         try {
@@ -730,6 +739,25 @@ hideButton.addEventListener('click', () => {
     
 });
 
+closePopupButton.addEventListener('click', hidePopup);
+let popupTimeout; // Declare popupTimeout in a scope accessible to both showPopup and hidePopup
+
+function showPopup() {
+    popupOverlay.classList.remove('hidden');
+    popupNotification.classList.remove('hidden');
+
+    let popupTimeout = setTimeout(() => {
+        popupOverlay.classList.add('hidden');
+        popupNotification.classList.add('hidden');
+    }, 1500);
+}
+
+function hidePopup() {
+    popupOverlay.classList.add('hidden');
+    popupNotification.classList.add('hidden');
+
+    clearTimeout(popupTimeout);
+}
 
 
 
