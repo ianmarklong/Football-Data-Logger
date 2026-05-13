@@ -42,6 +42,7 @@
         <span id = 'playersHeaderAndDisplay'>
         <div id = 'playersHeader'>
             <h2 id = 'playerTitle'>Players</h2>
+            <button id = 'toggleDisplayButton'>Show Names</button>
         </div>
         <div id = 'playersDisplay'>
             <h2 id = 'passerDisplay'>Passer: None</h2>
@@ -233,9 +234,14 @@
         <li id='lastPoint'>- Ian Long, Iqboy '24</li>
     </ul>
 </section>
-        
-
-    <script src="/static/app.js"></script>
 </main>
+    <div id="popupOverlay" class="hidden"></div>
+
+    <div id="popupNotification" class="hidden">
+        <button id="closePopupButton">✕</button>
+        <h2 id="logFailed">Log Failed</h2>
+        <h3 id="message">Please select both passer and receiver.</h3>
+    </div>
+    <script src="/static/app.js"></script>
 </body>
 </html>

@@ -112,7 +112,7 @@ def export():
             longBallIncomplete = None
         
         openPlay = 'Yes'
-        setPieces = ['Throw-in','Corner','Free kick','Kickoff','Goal kick']
+        setPieces = ['Throw-in','Corner','Free kick','Kickoff']
         if event['comment'] in setPieces:
             openPlay = 'No'
         
