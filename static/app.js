@@ -5,7 +5,7 @@ let intervalID = null;
 
 let editingTime = false;
 
-let playerDisplayNames = false;
+let playerDisplayNames = true; //default to showing player names on buttons instead of numbers//;
 let passer = null;
 let receiver = null;
 let isEditingPlayers = false;
@@ -574,7 +574,7 @@ function addEventToTable(event) {
         <td>${event.comment}</td>
         <td>${event.longBall}</td>
     `;
-    eventsTableBody.appendChild(row);
+    eventsTableBody.prepend(row);
 }
 
 //Clear Log Button//
