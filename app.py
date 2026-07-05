@@ -83,7 +83,11 @@ def export():
         print('No Google Sheet URL provided')
         return jsonify({"error": "Google Sheet URL is required"}), 400
     
-    worksheet = get_sheet(sheet_url)
+    try:
+        worksheet = get_sheet(sheet_url)
+    except Exception as e:
+        print(f"Error occurred while accessing the Google Sheet: {e}")
+        return jsonify({"error": "Failed to access Google Sheet"}), 500
 
     print('Received exports: ')
     print('events:', events)
@@ -120,8 +124,11 @@ def export():
         rows.append(row)
     
     
-    worksheet.append_rows(rows, value_input_option='USER_ENTERED') #with user-entered formatting (so that things like dates and dropdowns work correctly)
-        
+    try:
+        worksheet.append_rows(rows, value_input_option='USER_ENTERED') #with user-entered formatting (so that things like dates and dropdowns work correctly)
+    except Exception as e:
+        print(f"Error occurred while appending rows to the Google Sheet: {e}")
+        return jsonify({"error": "Failed to append rows to Google Sheet"}), 500
 
     return jsonify({"status": 'export received'})
 

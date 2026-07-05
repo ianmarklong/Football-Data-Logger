@@ -609,7 +609,12 @@ exportButton.addEventListener('click', () => {
     
     displayFeedback('Latest Update: Exporting data...');
     //Give the data to the python backend//
-    fetch('/export', { 
+    const API_BASE =
+    window.location.port === '5500'
+        ? 'http://127.0.0.1:5000'
+        : '';
+
+    fetch(`${API_BASE}/export`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
