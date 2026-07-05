@@ -624,7 +624,20 @@ exportButton.addEventListener('click', () => {
             sheetUrl: sheetUrl // the Google Sheet URL from the input field
         })
     })
-    .then(res => res.json()) //parse response as JSON, creates the variable for next line//
+    .then(async (res) => {
+        let data = null;
+        try {
+            data = await res.json();
+        } catch (e) {
+            data = null;
+        }
+
+        if (!res.ok) {
+            throw new Error(data?.error || `Request failed with status ${res.status}`);
+        }
+
+        return data;
+    })
     .then(data => {
         console.log('Export response:', data);
         displayFeedback('Latest Update: Export successful!');
